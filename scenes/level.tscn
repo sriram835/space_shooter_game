@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://ccg0fovek0xwq"]
+
+[ext_resource type="Texture2D" uid="uid://da30i62l604sq" path="res://assets/Backgrounds/darkPurple.png" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://cli4gcnwsuadq" path="res://scenes/player.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://r84tg4nwnnj3" path="res://scenes/ui.tscn" id="3_w8frs"]
+
+[sub_resource type="GDScript" id="GDScript_62k3l"]
+script/source = "extends Node2D
+
+var meteor_scene: PackedScene = load(\"res://scenes/meteor.tscn\")
+var laser_scene: PackedScene = load(\"res://scenes/laser.tscn\")
+var star_scene: PackedScene = load(\"res://scenes/star.tscn\")
+
+var health := 3
+
+func _ready()->void:
+	
+	get_tree().call_group(\"ui\",\"set_health\", health)
+	
+	for i in range(20):
+		var star = star_scene.instantiate()
+		$Stars.add_child(star)
+	
+
+func _on_meteor_timer_timeout() -> void:
+	var meteor = meteor_scene.instantiate()
+	
+	$Meteors.add_child(meteor)
+	
+	meteor.connect('collision', _on_meteor_collision)
+
+func _on_meteor_collision():
+	health -= 1
+	get_tree().call_group(\"ui\",\"set_health\", health)
+	print(health)
+	if health <= 0:
+		get_tree().change_scene_to_file(\"res://scenes/game_over.tscn\")
+
+func _on_player_laser(pos) -> void:
+	var laser = laser_scene.instantiate()
+	$Lasers.add_child(laser)
+	laser.position = pos
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62k3l"]
+size = Vector2(150, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(1587, 70)
+
+[node name="Level" type="Node2D" unique_id=1970176335]
+script = SubResource("GDScript_62k3l")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1208932605]
+position = Vector2(659.99994, 354.50003)
+scale = Vector2(5.5703125, 3.113281)
+texture = ExtResource("1_w7c3h")
+metadata/_edit_lock_ = true
+
+[node name="Stars" type="Node2D" parent="." unique_id=1241915206]
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=54018659 instance=ExtResource("2_w8frs")]
+position = Vector2(678, 618)
+
+[node name="Borders" type="Node2D" parent="." unique_id=1752477360]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders" unique_id=1529270394]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" unique_id=423366670]
+position = Vector2(1355, 360)
+shape = SubResource("RectangleShape2D_62k3l")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders" unique_id=1229700342]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" unique_id=597607169]
+position = Vector2(-75, 360)
+shape = SubResource("RectangleShape2D_62k3l")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders" unique_id=244346123]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" unique_id=1947560556]
+position = Vector2(640, -35)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders" unique_id=1598239894]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" unique_id=2117465876]
+position = Vector2(639, 755)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="MeteorTimer" type="Timer" parent="." unique_id=1538346355]
+wait_time = 0.2
+autostart = true
+
+[node name="Meteors" type="Node2D" parent="." unique_id=1924598833]
+metadata/_edit_lock_ = true
+
+[node name="Lasers" type="Node2D" parent="." unique_id=1325179614]
+metadata/_edit_lock_ = true
+
+[node name="UI" parent="." unique_id=2047858960 instance=ExtResource("3_w8frs")]
+
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
