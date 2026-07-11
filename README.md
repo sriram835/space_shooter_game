@@ -1,6 +1,6 @@
 # Space Shooter
 
-
+I wanted to learn game development recently, so I made this game. Although I used SDL and reylib before, I never made a proper game with them that is actually playable. I thought 'why use game engine when you can use renderering libs', only after making this I realized how much game engines help with makes games, because if I wanted to make this in SDL, it probably would have taken atleast one hour to just get game window open, whereas with godot, I think I completed this game within 5 hours. 
 
 ## Description
 
@@ -19,7 +19,7 @@ A simple 2D space shooter game built with **Godot Engine**. Control your spacesh
 
 ## Preview
 
-| Gameplay | Combat |
+| Gameplay | Game Over |
 |----------|--------|
 | ![Gameplay](game_preview_1.png) | ![Game Over](game_preview_2.png) |
 
