@@ -50,11 +50,15 @@ git clone https://github.com/your-username/space-shooter.git
 
 ```
 SpaceShooter/
-├── assets/
-├── scenes/
-├── scripts/
-├── images/
-└── project.godot
+├── assets
+├── game_preview_1.png
+├── game_preview_2.png
+├── global
+├── icon.svg
+├── icon.svg.import
+├── project.godot
+├── README.md
+└── scenes
 ```
 
 ---
