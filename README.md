@@ -1,38 +1,38 @@
-# 🚀 Space Shooter
+# Space Shooter
 
-A simple 2D space shooter game built with **Godot Engine**. Control your spaceship, dodge enemy attacks, and destroy incoming enemies to survive and achieve the highest score possible.
+
+
+## Description
+
+A simple 2D space shooter game built with **Godot Engine**. Control your spaceship, dodge and destroy meteors to survive and achieve the highest score possible.
 
 ---
 
-## 🎮 Features
+## Features
 
 - Smooth spaceship movement
-- Enemy spawning and combat
 - Projectile shooting
 - Collision detection
 - Score tracking
-- Simple and clean 2D gameplay
 
 ---
 
-## 📸 Preview
+## Preview
 
 | Gameplay | Combat |
 |----------|--------|
-| ![Gameplay](images/gameplay.png) | ![Combat](images/combat.png) |
-
-> Replace `images/gameplay.png` and `images/combat.png` with your own screenshots.
+| ![Gameplay](game_preview_1.png) | ![Game Over](game_preview_2.png) |
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 - **Godot Engine**
 - **GDScript**
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. Clone the repository:
 
@@ -46,7 +46,7 @@ git clone https://github.com/your-username/space-shooter.git
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 SpaceShooter/
@@ -59,16 +59,10 @@ SpaceShooter/
 
 ---
 
-## 🎨 Asset Credits
+## Asset Credits
 
 Game assets were created by **Kenney**.
 
 - https://www.kenney.nl
 
 Thank you to Kenney for providing high-quality free game assets.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License. Feel free to use, modify, and learn from it.
